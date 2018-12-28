@@ -1,6 +1,7 @@
 const ActionType = {
   INCREMENT: 'INCREMENT',
-  DECREMENT: 'DECREMENT'
+  DECREMENT: 'DECREMENT',
+  INCREMENT_ASYNC: 'INCREMENT_ASYNC',
 };
 
 const Actions = {
@@ -9,6 +10,9 @@ const Actions = {
   }),
   decrement: () => ({
     type: ActionType.DECREMENT,
+  }),
+  decrementAsync: () => ({
+    type: ActionType.INCREMENT_ASYNC,
   })
 };
 

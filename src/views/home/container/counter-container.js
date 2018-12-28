@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   onIncrement: Actions.increment,
   onDecrement: Actions.decrement,
+  onIncrementAsync: Actions.decrementAsync
 }, dispatch);
 
 const CounterWithData = connect(

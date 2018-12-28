@@ -14,7 +14,7 @@ const Counter = ({
   value, onIncrement, onDecrement, onIncrementAsync
 }) => (
   <Wrapper>
-    <Button onClick={onIncrementAsync}>
+    <Button onClick={() => global.store.dispatch({ type: 'INCREMENT_ASYNC' })}>
       Increment after 1 second
     </Button>
     {' '}
