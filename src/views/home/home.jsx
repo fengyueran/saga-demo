@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Counter from './container/counter-container';
 
 class Home extends Component {
   render() {
     return (
       <div>
-       This is my home !
+        <Counter />
       </div>
     );
   }
