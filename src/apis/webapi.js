@@ -7,4 +7,15 @@ const authorize = (username, password) => {
   throw new Error();
 };
 
-export { authorize };
+
+const fetchCats = () => {
+  const cats = ['cat1', 'cat2'];
+  return cats;
+};
+
+const fetchDogs = () => {
+  const dogs = ['dog1', 'dog2'];
+  return dogs;
+};
+
+export { authorize, fetchCats, fetchDogs };

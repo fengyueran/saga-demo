@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
-import { reducers, rootReducer } from './rootreducer';
+import { reducers, rootReducer } from './root-reducer';
 import rootSaga from './root-sagas';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -33,7 +33,7 @@ export default function configureStore(initialState, history) {
 
   if (module.hot) {
     module.hot.accept('./rootreducer', () => {
-      const nextReducer = require('./rootreducer'); // eslint-disable-line
+      const nextReducer = require('./root-reducer'); // eslint-disable-line
       store.replaceReducer(nextReducer);
     });
   }
