@@ -1,3 +1,4 @@
+import { delay } from 'redux-saga';
 import { 
   call, take, put, fork, cancel, cancelled
 } from 'redux-saga/effects';
@@ -7,12 +8,15 @@ import { ActionType } from './actions';
 
 function* login(username, password) {
   try {
+    yield put({ type: ActionType.LOGIN_PENDING });
+    yield call(delay, 1000);
     const token = yield call(authorize, username, password);
     yield put({ type: ActionType.LOGIN_SUCCESS, token });
     yield call(gotoPage, '/home');
   } catch (error) {
     yield put({ type: ActionType.LOGIN_ERROR, error });
   } finally {
+    yield put({ type: ActionType.LOGIN_FINISH });
     if (yield cancelled()) {
       alert('login cancelled');
     }

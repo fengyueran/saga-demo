@@ -17,6 +17,10 @@ const Input = styled.input`
   margin: 10px;
 `;
 
+const Hint = styled.span`
+  color: blue;
+`;
+
 const SubmitButton = styled.input`
   -webkit-appearance: none;
   width: 70px;
@@ -34,6 +38,17 @@ class LoginPage extends Component {
     logout();
   }
 
+  get loginHint() {
+    const { isLoginPending, isLoginError } = this.props;
+    let loginHint;
+    if (isLoginError) {
+      loginHint = '登录失败';
+    } else if (isLoginPending) {
+      loginHint = '正在登录...';
+    }
+    return loginHint;
+  }
+
   handleSubmit = (e) => {
     const { login } = this.props;
     e.preventDefault();
@@ -43,11 +58,16 @@ class LoginPage extends Component {
   }
 
   render() {
+    const loginHint = this.loginHint;
     return (
       <VerticalBox>
         <Form onSubmit={this.handleSubmit}>
           <Input innerRef={(c) => { (this.usernameInput = c); }} />
           <Input type="password" innerRef={(c) => { (this.passwordInput = c); }} />
+          {
+            loginHint
+            && <Hint>{loginHint}</Hint>
+          }
           <Button>
             <SubmitButton type="submit" value="登录" />
           </Button>
@@ -60,6 +80,8 @@ class LoginPage extends Component {
 LoginPage.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  isLoginError: PropTypes.bool.isRequired,
+  isLoginPending: PropTypes.bool.isRequired,
 };
 
 export default withRouter(LoginPage);

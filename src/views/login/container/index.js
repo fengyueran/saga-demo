@@ -4,6 +4,8 @@ import LoginPage from '../login-page';
 import { Actions } from './actions';
 
 const mapStateToProps = state => ({
+  isLoginPending: state.loginState.isLoginPending,
+  isLoginError: state.loginState.isLoginError
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
