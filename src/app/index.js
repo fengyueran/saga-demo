@@ -5,10 +5,12 @@ import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import { Route } from "react-router-dom";
 import configureStore from './store/configureStore';
+import { setHistory } from '../apis/navigation';
 import App from './app';
 
 const initialState = {};
 const history = createHistory();
+setHistory(history);
 const store = configureStore(initialState, history);
 
 const MOUNT_NODE = document.getElementById('root');

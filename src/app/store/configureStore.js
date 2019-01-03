@@ -2,17 +2,15 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
-import { storageEnhancer } from '@cc/components-browser';
 import { reducers, rootReducer } from './rootreducer';
-import rootSaga from './sagas';
+import rootSaga from './root-sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-storageEnhancer.setCustomSerializer(reducers);
 
 export default function configureStore(initialState, history) {
   const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
-  const enhancers = [applyMiddleware(...middlewares), storageEnhancer];
+  const enhancers = [applyMiddleware(...middlewares)];
 
   /* eslint-disable no-underscore-dangle */
   const composeEnhancers = process.env.NODE_ENV !== 'pruduction'

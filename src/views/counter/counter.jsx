@@ -11,10 +11,10 @@ const Button = styled.button`
 `;
 
 const Counter = ({ 
-  value, onIncrement, onDecrement, onIncrementAsync
+  value, onIncrement, onDecrement, onIncrementAsync,
 }) => (
   <Wrapper>
-    <Button onClick={() => global.store.dispatch({ type: 'INCREMENT_ASYNC' })}>
+    <Button onClick={onIncrementAsync}>
       Increment after 1 second
     </Button>
     {' '}
@@ -33,9 +33,9 @@ const Counter = ({
 
 Counter.propTypes = {
   value: propTypes.number,
-  onIncrement: propTypes.number,
-  onDecrement: propTypes.number,
-  onIncrementAsync: propTypes.number
+  onIncrement: propTypes.func,
+  onDecrement: propTypes.func,
+  onIncrementAsync: propTypes.func
 };
 
 export default Counter;
