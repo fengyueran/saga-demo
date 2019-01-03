@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import appState from '../../reducers/appReducer';
-import loginState from '../../reducers/login-reducer';
-import counterState from '../../reducers/counter-reducer';
+import loginState from '../../views/login/container/login-reducer';
+import counterState from '../../views/counter/container/counter-reducer';
 
 const reducers = {
   appState,

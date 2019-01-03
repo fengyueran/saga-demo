@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Counter from '../counter';
-import { Actions } from '../../../reducers/counter-reducer';
+import { Actions } from './actions';
 
 const mapStateToProps = state => ({
   value: state.counterState,
