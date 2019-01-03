@@ -1,3 +1,5 @@
+import { delay } from 'redux-saga';
+
 const authorize = (username, password) => {
   const isSuccess = username === 'xhm' && password === 'xhm';
   if (isSuccess) {
@@ -18,4 +20,12 @@ const fetchDogs = () => {
   return dogs;
 };
 
-export { authorize, fetchCats, fetchDogs };
+function* fetchFishes() {
+  yield delay(2000);
+  const fishes = ['fish1', 'fish2'];
+  return fishes;
+}
+
+export { 
+  authorize, fetchCats, fetchDogs, fetchFishes
+};
