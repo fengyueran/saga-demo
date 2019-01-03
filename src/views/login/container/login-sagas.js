@@ -1,5 +1,5 @@
 import { 
-  call, take, put, fork, cancel
+  call, take, put, fork, cancel, cancelled
 } from 'redux-saga/effects';
 import { authorize } from '../../../apis/webapi';
 import { gotoPage } from '../../../apis/navigation';
@@ -12,6 +12,10 @@ function* login(username, password) {
     yield call(gotoPage, '/home');
   } catch (error) {
     yield put({ type: ActionType.LOGIN_ERROR, error });
+  } finally {
+    if (yield cancelled()) {
+      alert('login cancelled');
+    }
   }
 }
 
