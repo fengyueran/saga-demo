@@ -13,6 +13,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   dataRequest: Actions.dataRequest,
   fishDataRequest: Actions.fishDataRequest,
+  startBGTask: Actions.startBGTask,
+  cancelBGTask: Actions.cancelBGTask,
 }, dispatch);
 
 const AnimalsListWithData = connect(

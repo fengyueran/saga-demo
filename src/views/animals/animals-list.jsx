@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { VerticalBox, Button } from '@xinghunm/widgets';
+import { VerticalBox, LineBox, Button } from '@xinghunm/widgets';
 
 const Title = styled.h4`
   color: blue;
 `;
 
-const LoadFishBtn = styled(Button)`
+const StyledBtn = styled(Button)`
   width: 120px;
 `;
 
@@ -19,13 +19,19 @@ class AnimalsList extends Component {
 
   render() {
     const { 
-      cats, dogs, fishes, fishDataRequest, timeoutError
+      cats, dogs, fishes, fishDataRequest, timeoutError,
+      startBGTask, cancelBGTask
     } = this.props;
 
     return (
       <VerticalBox>
         AnimalsList
-        <LoadFishBtn onClick={fishDataRequest}>Load Fish</LoadFishBtn>
+        <StyledBtn onClick={fishDataRequest}>Load Fish</StyledBtn>
+        <LineBox>
+          <StyledBtn onClick={startBGTask}>Start Task</StyledBtn>
+          <StyledBtn onClick={cancelBGTask}>Cancel Task</StyledBtn>
+        </LineBox>
+       
         <Title>Cats:</Title>
         {
           cats.map(v => <span key={v}>{v}</span>)
@@ -47,6 +53,8 @@ AnimalsList.propTypes = {
   dogs: PropTypes.array,
   fishes: PropTypes.array,
   timeoutError: PropTypes.bool,
+  startBGTask: PropTypes.func.isRequired,
+  cancelBGTask: PropTypes.func.isRequired,
   dataRequest: PropTypes.func.isRequired,
   fishDataRequest: PropTypes.func.isRequired,
 };

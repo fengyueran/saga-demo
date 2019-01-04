@@ -3,7 +3,9 @@ export const ActionType = {
   FISH_DATA_REQUEST: 'FISH_DATA_REQUEST',
   DATA_GOT: 'DATA_GOT',
   FISH_DATA_GOT: 'FISH_DATA_GOT',
-  TIMEOUT_ERROR: 'TIMEOUT_ERROR'
+  TIMEOUT_ERROR: 'TIMEOUT_ERROR',
+  START_BG_TASK: 'START_BG_TASK',
+  CANCEL_BG_TASK: 'CANCEL_BG_TASK'
 };
 
 export const Actions = {
@@ -21,5 +23,11 @@ export const Actions = {
   }),
   timeout: () => ({
     type: ActionType.TIMEOUT_ERROR
+  }),
+  startBGTask: () => ({
+    type: ActionType.START_BG_TASK
+  }),
+  cancelBGTask: () => ({
+    type: ActionType.CANCEL_BG_TASK
   }),
 };

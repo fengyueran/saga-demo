@@ -26,6 +26,11 @@ function* fetchFishes() {
   return fishes;
 }
 
+function* startBgTask() {
+  yield delay(20000);
+  return 'bgTask';
+}
+
 export { 
-  authorize, fetchCats, fetchDogs, fetchFishes
+  authorize, fetchCats, fetchDogs, fetchFishes, startBgTask
 };

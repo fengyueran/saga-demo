@@ -1,6 +1,6 @@
 import { delay } from 'redux-saga';
 import { 
-  takeEvery, race, call, put
+  takeEvery, race, call, put, take, cancelled
 } from 'redux-saga/effects';
 import { fetchCats, fetchDogs, fetchFishes } from '../../../apis/webapi';
 import { Actions, ActionType } from './actions';
@@ -26,7 +26,28 @@ function* fetchFishesWithTimeout() {
   }
 }
 
+function* backgroundTask() {
+  try {
+    while (true) {
+      yield call(delay, 2000);
+      console.log('bg task');
+    }
+  } finally {
+    if (yield cancelled()) {
+      alert('canceled');
+    }
+  }
+}
+
+function* watchStartBackgroundTask() {
+  yield race({
+    task: call(backgroundTask),
+    cancel: take(ActionType.CANCEL_BG_TASK)
+  });
+}
+
 export function* watchAnimalDataRequest() {
   yield takeEvery(ActionType.DATA_REQUEST, getAnimals);
   yield takeEvery(ActionType.FISH_DATA_REQUEST, fetchFishesWithTimeout);
+  yield takeEvery(ActionType.START_BG_TASK, watchStartBackgroundTask);
 }
